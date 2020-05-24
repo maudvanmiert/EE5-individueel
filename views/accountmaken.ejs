@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<head>
+    <title>Account maken</title>
+    <link rel="icon" type="image/png"  href="/images/violeticoon_rond.png"/>
+    <link rel="stylesheet" type="text/css" href="/assets/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="/views/accountmaken.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <%- include ('partials/topborder.ejs') %>
+    <div class="page-container">
+        <%- include ('partials/nav.ejs') %>
+        <div class = "content">
+
+            <div class="page-header">
+              <img src="/images/svg/add.svg" alt="Account maken" class="page-header-icon">
+              <h1>Account maken</h1>
+            </div>
+
+            <div class="account-type-options"> 
+                <div id="gast" class="account-type-box"> 
+                    <img src="/images/svg/gast.svg" alt="Gast" class="account-type-image">
+                    <h3>Gast</h3>
+                </div>
+                <div id="collega" class="account-type-box">
+                    <img src="/images/svg/job.svg" alt="Werknemer" class="account-type-image">
+                    <h3>Collega</h3>
+                </div>
+            </div>
+
+            <div id="onzichtbaarcol">
+              <form class="new-account-form" id="contact" action="/accountmaken" method="POST">
+                <h3>Nieuwe collega</h3>
+                <input class="form-element" id="voornaamke" placeholder="Voornaam" type="text" tabindex="1" required autofocus>
+                <input class="form-element" id="achternaam" placeholder="Achternaam" type="text" tabindex="1" required autofocus>
+                <input class="form-element" id="gebruikersnaam" placeholder="Gebruikersnaam" type="text" tabindex="1" required autofocus>
+                <input class="form-element" id="wachtwoord" type="password" placeholder="Wachtwoord"  tabindex="1" required autofocus>
+                <input style="display:none"  class="form-element" id="herhaalwachtwoord" type="password" placeholder="Herhaal wachtwoord" tabindex="1" autofocus>
+                <button class="form-element form-element--submit" id="submitstaff" name="Opslaan" type="submit" id="account-submit" tabindex="1" data-submit="...Sending">Opslaan</button>       
+              </form>
+            </div>
+
+            <div id="onzichtbaargast">
+              <form class="new-account-form" id="contact" action="/accountmaken" method="POST">
+                <h3>Nieuwe gast</h3>
+                <input class="form-element" id="voornaamGast" placeholder="Voornaam" type="text" tabindex="1" required autofocus>
+                <input class="form-element" id="achternaamGast" placeholder="Achternaam" type="text" tabindex="1" required autofocus>
+                <input class="form-element" id="geboortedatumGast" placeholder="Geboortedatum" type="date" tabindex="1" required autofocus>
+                <button class="form-element form-element--submit" id="submitguest" name="Opslaan" type="submit" id="account-submit" tabindex="1" data-submit="...Sending">Opslaan</button>
+              </form>
+            </div>  
+        </div>
+    </div>
+
+
+    <script>
+      $(document).ready(function(){
+        $('#onzichtbaarcol').css({'display': 'none'});
+        $('#collega').click(function(){ 
+            $('#onzichtbaarcol').css({'display': 'block'});
+            $('#onzichtbaargast').css({'display': 'none'});
+        });
+        $('#gast').click(function(){ 
+            $('#onzichtbaarcol').css({'display': 'none'});
+            $('#onzichtbaargast').css({'display': 'block'});
+        });
+
+      });
+    </script>
+
+    <script src="/assets/stappen.js"></script> 
+</body>
+</html>

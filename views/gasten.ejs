@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<head>
+    <title>Gasten</title>
+    <link rel="icon" type="image/png" href="/images/violeticoon_rond.png"/>
+    <link rel="stylesheet" type="text/css" href="/assets/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="/views/gasten.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <%- include ('partials/topborder.ejs') %>
+    <div class="page-container">
+        <%- include ('partials/nav.ejs') %>
+        <div class="content">
+            <div class="page-header">
+                <div class="pad">
+                <img src="/images/svg/gasten.svg" alt="Account maken" class="page-header-icon"></div>
+                <h1>Gasten</h1>
+            </div>  
+
+            <div class="buttoncreate">
+                <div id="zoekengast" class="border2 werknemergast border3"> 
+                    <img src="/images/svg/search.svg" alt="Gast" class="imagesmall">
+                </div>
+
+                <div class="onzichtbaar" id="onzichtbaarcol">
+                    <form style="display: flex; align-items: center;" id="zoeken" method= "POST" action="/gasten/filtered">
+                        <input id="zoekveld" type="text" name="item" placeholder="Wie wil je zoeken?" value="<%= sKey%>">
+                        <button id="gezocht" type="submit" value="Zoeken">Zoeken</button>
+                    </form>  
+                </div>
+            </div>
+
+
+            <div class="stepcontainer flexwrap">
+                <span id="aantal" style="display: none"><%= guests.length%></span>
+                
+                <% for(var i=0; i < guests.length; i++){ %>
+                    <div class="box" >
+                        <a href="/detail/<%=guests[i].id%>">
+                        <div id="box" class="boxperson border1 middle person-card" hover--blue>
+                            <%if(guests[i].yellowcard){ %>
+                                <div class="yellowcard"></div>
+                            <%}%>
+                            <h2 id="id[i]"><%= guests[i].name %>  <%= guests[i].lastname %></h2>
+                            <h4 type="Date">Opname op <%= guests[i].opname %></h4>
+                            <h4>Aantal dagen: <span id="resultaat-<%=[i]%>"><%=guests[i].startdate %></span></h4>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <script src="/assets/zoeken.js"></script> 
+
+    <script>
+
+        $(document).ready(function(){
+            // var z = document.getElementById("resultaat-0").innerText;
+            // document.getElementById("resultaat-0").innerHTML = Math.floor(((new Date()).valueOf() - new Date(z).valueOf() ) / (1000 * 60 * 60 * 24));
+
+            var x;
+            var aantal = document.getElementById("aantal").innerText;
+            for(var i=0; i < aantal; i++){
+                x = document.getElementById("resultaat-" + i).innerText;
+                document.getElementById("resultaat-"+ i).innerHTML = Math.floor(((new Date()).valueOf() - new Date(x).valueOf() ) / (1000 * 60 * 60 * 24));
+            }
+        
+        // function treatAsUTC(date) {
+        //     var result = new Date(date);
+        //     result.setMinutes(result.getMinutes() - result.getTimezoneOffset());
+        //     console.log("hallo" +result);
+        //     return result;
+        // }
+
+
+        // //alert(daysBetween($('#firststartedate').val(), Date.now));
+        // alert(daysBetween(Date.now, Date.now));
+        function filterGuests(gasten){
+            const searchword = document.getElementById("zoekmij").innerText;
+            return gasten.filter(gast => gast.firstname.includes(searchword));
+        }
+    });
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+    <title>Inloggen</title>
+    <link rel="icon" type="image/png"  href="/images/violeticoon_rond.png"/>
+    <link rel="stylesheet" type="text/css" href="/assets/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="/views/login.css"/>
+</head>
+
+<body>
+    <%- include ('partials/topborder.ejs') %>
+    <div class="login-container">
+        <div class="login-box">
+                
+            <form id="login" action="/inloggen" method="POST">
+                <h3>Inloggen</h3>
+                <div>
+                    <input tabIndex="1" name="username" id="username" placeholder="Gebruikersnaam" type="text" tabindex="0" required autofocus>
+                    <input tabIndex="1" name="password" id="password" placeholder="Wachtwoord" type="password" tabindex="1" required autofocus>
+                    <button tabIndex="1" name="Inloggen" type="submit" id="logginbutton" data-submit="...Sending">Log in</button><br /><br />
+                </div>
+             <h4><%= message%></h4>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

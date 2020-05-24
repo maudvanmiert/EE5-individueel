@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<head>
+    <title>Stappen</title>
+    <link rel="icon" type="image/png"  href="/images/violeticoon_rond.png"/>
+    <link rel="stylesheet" type="text/css" href="/assets/styles.css"/>
+    <!-- <link rel="stylesheet" type="text/css" href="/assets/buttonedit.css"/>  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <%- include ('partials/topborder.ejs') %>
+    <div class="page-container">
+        <%- include ('partials/nav.ejs') %>
+        <div class= "content">
+        <div class="page-header">
+            <img src="/images/svg/stappen.svg" alt="Account maken" class="page-header-icon">
+            <h1>Stappen</h1>
+        </div>
+        
+            <div class ="stepcontainerup">
+                <div class="box">
+                    <div id="stepform" >
+                        <button type="submit" class="hover" id="bewerken">Bewerken</button>
+                        <button type="submit" class="hover onzichtbaar" id="opslaan">Opslaan</button>
+                    </div>
+                </div>
+            </div> 
+        
+
+            <div class="stepcontainer"> 
+                <div class="box">
+                    <div class="border1 border1a">
+                        <div id="steptitel" class="steptitel">
+                        <h2>Stap 1</h2></div>
+                        <ul id="step1">
+                            <div>
+                                <hr>
+                                <% for(var i=0; i < stap1.length; i++){ %>
+                                    <li id="listep1" method= "DELETE" action="/stappen" class="list hoverstep"><%= stap1[i].name %></li>
+                                    <hr>
+                                <% } %>
+                            </div>
+
+                            <div id="nieuwetaak1" class="onzichtbaar">
+                                <form id="stepform" method= "POST" action="/stappen">
+                                    <input id="opdracht1" type="text" name="nieuwetaak" placeholder="Nieuwe opdracht">
+                                    <button id="submitstep1" type="submit" value="submit">Toevoegen</button>
+                            </form>
+                            </div>
+                        
+                        </ul>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="border1 border1a">
+                        <div id="steptitel" class="steptitel">
+                        <h2>Stap 2</h2></div>
+                        <ul>
+                            <div>
+                                <hr>
+                                <% for(var i=0; i < stap2.length; i++){ %>
+                                    <li class="list hoverstep"><%= stap2[i].name %></li>
+                                    <hr>
+                                <% } %>
+                            </div>
+                            
+                            <div id="nieuwetaak2" class="onzichtbaar">
+                                <form id="stepform" method= "POST" action="/stappen">
+                                <input id="opdracht2" type="text" name="nieuwetaak" placeholder="Nieuwe opdracht">
+                                <button id="submitstep2" type="submit" value="submit">Toevoegen</button>
+                            </form>
+                            </div>
+                        
+                        </ul>
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="border1 border1a">
+                        <div id="steptitel" class="steptitel">
+                        <h2>Stap 3</h2></div>
+                        <ul>
+                            <div>
+                                <hr>
+                                <% for(var i=0; i < stap3.length; i++){ %>
+                                    <li class="list hoverstep"><%= stap3[i].name %></li>
+                                    <hr>
+                                <% } %>
+                            </div>
+                            
+                            <div id="nieuwetaak3" class="onzichtbaar">
+                                <form id="stepform" method= "POST" action="/stappen">
+                                <input id="opdracht3" type="text" name="nieuwetaak" placeholder="Nieuwe opdracht">
+                                <button id="submitstep3" type="submit" value="submit">Toevoegen</button>
+                                </form>
+                            </div>
+                        </ul>
+                    </div>
+                </div>
+            </div> 
+
+            <div id="onzichtbaarcol" class="onzichtbaar stepcontainer "> 
+                <div class="box">
+                    <div class="border1">
+                        <form id="new" method= "POST" action="/accountmaken">
+                            <input type="text" name="item" placeholder="Nieuwe opdracht">
+                            <input type="submit" value="submit"/>
+                        </form> 
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="border1">
+                        <form id="new" method= "POST" action="/accountmaken">
+                            <input type="text" name="item" placeholder="Nieuwe opdracht">
+                            <input type="submit" value="Toevoegen"/>
+                        </form>   
+                    </div>
+                </div>
+                <div class="box">
+                    <div class="border1">
+                        <form id="new" method= "POST" action="/accountmaken">
+                            <input type="text" name="item" placeholder="Nieuwe opdracht"/>
+                            <input type="submit" value="submit"/>
+                        </form> 
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#bewerken').click(function(){ 
+                $('#bewerken').css({'display': 'none'});
+                $('#opslaan').css({'display': 'block'});
+                $('#nieuwetaak1').css({'display': 'block'});
+                $('#nieuwetaak2').css({'display': 'block'});
+                $('#nieuwetaak3').css({'display': 'block'});
+                $("li.list").mouseover(function() {
+                    $(this).css("color","#6F955B");
+                }).mouseout(function() {
+                    $(this).css("color","#333333");
+                });
+                $("li.hoverstep").mouseover(function() {
+                    $(this).css("background-color","#e1f0da");
+                }).mouseout(function() {
+                    $(this).css("background-color","transparent");
+                });
+            });
+            $('#opslaan').click(function(){ 
+                $('#bewerken').css({'display': 'block'});
+                $('#opslaan').css({'display': 'none'});
+                $('#nieuwetaak1').css({'display': 'none'});
+                $('#nieuwetaak2').css({'display': 'none'});
+                $('#nieuwetaak3').css({'display': 'none'});
+                $("li.hoverstep").mouseover(function() {
+                    $(this).css("background-color","transparent");
+                }).mouseout(function() {
+                    $(this).css("background-color","transparent");
+                });
+                $("li.list").mouseover(function() {
+                    $(this).css("color","#333333");
+                }).mouseout(function() {
+                    $(this).css("color","#333333");
+                });
+            });
+
+        });
+    </script>
+
+    <script src="/assets/addstep.js"></script> 
+    
+</body>
+</html>

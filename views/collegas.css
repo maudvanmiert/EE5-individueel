@@ -1,0 +1,14 @@
+.collega-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.remove-person{
+    text-align: center;
+    
+    flex: 0 1 30px;
+    min-width: 50px;
+
+    margin-bottom: 20px;
+}

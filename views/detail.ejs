@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<head>
+    <title>Detailpagina van <%= nameGuest %></title>
+    <link rel="icon" type="image/png"  href="/images/violeticoon_rond.png"/>
+    <link rel="stylesheet" type="text/css" href="/assets/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="/views/detail.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <%- include ('partials/topborder.ejs') %>
+    <div class="page-container">
+        <%- include ('partials/nav.ejs') %>
+        <div class = "content">
+
+            <div class="page-header">
+                <img src="/images/svg/gast.svg" alt="Account maken" class="page-header-icon">
+                <h1>Opvolging <%= nameGuest %></h1>
+                <span spacer></span>
+                <!-- <img src="/images/svg/trash.svg" alt="Ga weg!" class="delete-account"> -->
+                <div id="delete" class=" werknemergast delete-account"> 
+                    <img src="/images/svg/trash.svg" alt="Gast" class="trash">
+                </div>
+            </div>
+            <div class="stepcontainer flexwrap">
+            <div class = "box">
+                <div id="detail" class = "boxdetail border1">
+                    <h4 id="idguest" class="onzichtbaar"><%= idGuest %></h4>
+                    <h4 class="minwidth">Voornaam: </h4><h4 class="inline"><%= nameGuest %></h4><hr>
+                    <h4 class="minwidth">Naam: </h4><h4 class="inline"><%= lastnameGuest %></h4><hr>
+                    <h4 class="minwidth">Geboortedatum: </h4><h4 class="inline"><%= birthdateGuest %></h4><hr>
+                    <h4 class="minwidth">Datum van opname: </h4><h4 class="inline"><%= startdateGuest %></h4><hr>
+                    <h4 class="minwidth">Lengte van opname: </h4><h4 class="inline"><%= period %></h4><hr>
+                    <h4 class="indent">Dagen tot eerste dokterafspraak: <%= days8 %></h4><hr>
+                    <h4 class="indent">Dagen tot tweede dokterafspraak: <%= days21 %></h4><hr>
+                    <h4 class="minwidth" >Gele kaart: </h4>
+                    <input id="geel" class="indent" style="width: 24px; margin-left: 0;" type="checkbox" value="<%= yellowcard %>">
+                    <h4 style="display: inline" ><%= yellowcardGuest%></h4>
+                </div>
+            </div>
+            
+            
+            <div class = "box1">
+                <input id="aantal-steps" style="display: none" value="<%= steps.length %>">
+                <% for(var stapindex = 0, col = steps[stapindex], stap = 1; stapindex < steps.length; stapindex++, col = steps[stapindex], stap++){ %>
+                    <input id="<%=stap%>-aantal-steps" style="display: none" value="<%=col.length%>">
+                    <div class = "border1 border1step">
+                        <h3 style="margin-top: 0">Stap <%= stap %></h3>
+                        <% for(var i=0; i < col.length; i++){ %>
+                            <label class="minwidth" for="task-<%= stap%>-<%= i%>"><%= col[i].name %></label>
+                            <input type="checkbox" id="task-<%= stap%>-<%= i%>" name="task-<%= stap%>-<%= i%>" value="<%= col[i].completed%>"><br>
+                            <input style="display: none" id="task-<%= stap%>-<%= i%>-id" value="<%= col[i].id%>">
+                        <% } %>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <script src="../assets/detail.js"></script>
+</body>
+</html>

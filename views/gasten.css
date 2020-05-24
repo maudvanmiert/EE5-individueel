@@ -1,0 +1,15 @@
+.person-card{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+}
+.yellowcard{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 15px;
+    width: 11px;
+    background: yellow;
+}

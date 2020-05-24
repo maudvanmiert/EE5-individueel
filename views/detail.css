@@ -1,0 +1,15 @@
+.delete-account{
+    min-width: 40px;
+    height: 40px;
+    flex-grow: 0;
+    margin-right: 12px;
+    
+    padding: 10px 5px 0px;
+    border-style: solid;
+    border-width: 0 4px 4px 0;
+    border-radius: 6px;
+    border-color: rgba(129, 162, 172);
+    background: rgba(129, 162, 172, 0.7);
+    color: white;
+    text-align: center;
+}

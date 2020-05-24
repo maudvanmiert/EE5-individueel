@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<head>
+    <title>De Spiegel</title>
+    <link rel="icon" type="image/png"  href="/images/violeticoon_rond.png"/>
+    <link rel="stylesheet" type="text/css" href="/assets/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <%- include ('partials/topborder.ejs') %>
+    <div class="page-container">
+        <%- include ('partials/nav.ejs') %>
+        <div class= "content">
+            <div class="page-header">
+                <div class="pad">
+                <img src="/images/svg/mijnaccount.svg" alt="Account maken" class="page-header-icon"></div>
+                <h1>Welkom, <%= firstname%></h1>
+            </div>
+            <div class="stepcontainer flexwrap">
+                <div id="box" class = "box">
+                    <div  id="detail" class = "boxaccount border1">
+                        <h4>Voornaam: <%= firstname%></h4><hr>
+                        <h4>Naam: <%= lastname%></h4><hr>
+                        <h4>Gebruikersnaam: <%= username%></h4>
+                    </div>
+                    <div style="display: none" class="padding-left">
+                        <button id="changepassword" type="submit" value="changepassword">Wachtwoord wijzigen</button>
+                    </div>
+                </div>
+
+                <div id="boxpasswordchange" class="onzichtbaar">
+                    <div id="box" class = "box">
+                        <div id="detail" class = "boxperson1 border1">
+                            <form id="contact" method= "POST" action="/home">
+                                <input id="newpassword" type="text" name="nieuwwachtwoord" placeholder="Nieuw wachtwoord">
+                                <button id="savenewpassword" type="submit">Opslaan</button>
+                            </form>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+
+    <script>
+    $(document).ready(function(){
+        $('#changepassword').click(function(){ 
+            $('#boxpasswordchange').css({'display': 'block'});
+        });
+        $('#savenewpassword').click(function(){
+        var newpassword = $('#newpassword');
+        var changepassword = {newpassword: newpassword.val()};
+        $.ajax({
+            type: 'POST',
+            url: '/home',
+            data: changepassword,
+            success: function(data){
+            //do something with the data via front-end framework
+            alert('Wachtwoord is gewijzigd');
+            location.reload();
+            }
+        });
+        return false;
+    });
+    });
+    
+    
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+    <title>Collegas</title>
+    <link rel="icon" type="image/png" href="/images/violeticoon_rond.png"/>
+    <link rel="stylesheet" type="text/css" href="/assets/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="/views/collegas.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <%- include ('partials/topborder.ejs') %>
+    <div class="page-container">
+        <%- include ('partials/nav.ejs') %>
+        <div class="content">
+            <div class="page-header">
+                <div class="pad">
+                <img src="/images/svg/job.svg" alt="Collegas" class="page-header-icon"></div>
+                <h1>Collega's</h1>
+            </div> 
+
+            <div class="buttoncreate">
+                <div id="zoekengast" class="border2 werknemergast border3"> 
+                    <img src="/images/svg/search.svg" alt="Gast" class="imagesmall">
+                </div>
+
+                <div class="onzichtbaar" id="onzichtbaarcol">
+                    <form style="display: flex; align-items: center;" id="zoeken" method= "POST" action="/collegas/filtered">
+                        <input id="zoekveld" type="text" name="item" placeholder="Wie wil je zoeken?" value="<%= sKey%>">
+                        <button id="gezocht" type="submit" value="Zoeken">Zoeken</button>
+                    </form>  
+                </div>
+            </div>
+
+            <div class="stepcontainer flexwrap">
+                <input id="aantal" style="display:none" value="<%= staff.length %>">
+                <% for(var i=0; i < staff.length; i++){ %>
+                    <div class="box">
+                        <div id="box" class="boxpersoncollega border1 middle collega-card">
+                            <input id="person-<%=i%>" style="display:none" value="<%= staff[i].id %>">
+                            <h2><%= staff[i].firstname %> <%= staff[i].lastname %></h2>
+                            <h4>Gebruikersnaam: <%= staff[i].username %></h4>
+                            <p id="demo"></p>
+                            <span spacer></span>
+                            <div id="delete-<%=i%>" class="border2 remove-person"> 
+                                <img src="/images/svg/trash.svg" alt="Gast" class="trash">
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="/assets/zoeken.js"></script> 
+    <script src="/assets/collega.js"></script>
+</body>
+</html>

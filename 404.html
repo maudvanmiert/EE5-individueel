@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>404 aiaiaiai deze pagina bestaat niet</h1>
+    </body>
+    </html>
+
+    <ul>
+                
+        </ul>
+    <% for(var i = 0; i < accounts.length; i++){ %>
+        <li><%= accounts[i].item %></li>
+    <% }); %>
+
+    <ul>
+            <% data.item(function(item){ %>
+                <li><%= item %></li>
+            <% }); %>
+        </ul>
+
+
+        <div class="page-container">
+                <%- include ('partials/nav.ejs') %>
+                <div class = "content">
+                    <h1>Dit is de account maken pagina</h1>
+                    <h2>Account maken gelukt!</h2>
+                    
+                    <p>Reeds opgeslagen gasten:</p>
+                </div>
+            </div>
+            
+
+            <h1>Welcome op de <%= person %> pagina</h1>
+            <p><strong>Age: </strong><%= data.age %></p>
+            <p><strong>Job: </strong><%= data.job %></p>
+            <h2>Hobbies</h2>
+            <ul>
+                <% data.hobbies.forEach(function(item){ %>
+                    <li><%= item %></li>
+                <% }); %>
+            </ul>
+
+
+            <div class="navbutton">
+                <a href="/dagplanning">
+                <div class="hover navbuttonborder">
+                    <div class="buttonicon">
+                        <img src="/images/svg/dagplanning.svg" alt="Dagplanning" class="icon">
+                    </div>
+                    <div class="buttontext">
+                        <h3>Dagplanning</h3>
+                    </div>
+                    <div class="buttonicon">
+                        <img src="/images/svg/right.svg" alt="open" class="icon">
+                    </div>
+                    </div>
+                </a>
+            </div> 
+
+            <div class="navbutton">
+                <a href="/onderhoudstaken">
+                <div class="hover navbuttonborder">
+                    <div class="buttonicon">
+                        <img src="/images/svg/onderhoudstaken.svg" alt="Onderhoudstaken" class="icon">
+                    </div>
+                    <div class="buttontext">
+                        <h3>Onderhoudstaken</h3>
+                    </div>
+                    <div class="buttonicon">
+                        <img src="/images/svg/right.svg" alt="open" class="icon">
+                    </div>
+                </div>
+                </a>
+            </div> 
